@@ -1,10 +1,10 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 from src.config import DATABASE_URL
 
-engine = create_engine(PATH)
-sessionmaker = sessionmaker(autocommit=False, autoflush=Flase, bind=engine)
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 def get_db():
@@ -12,4 +12,4 @@ def get_db():
     try:
         yield db
     finally:
-        db.closse()
+        db.close()
